@@ -20,12 +20,12 @@
 
 These two cases shaped the rules above. They come from my own setup.
 
-**1. The quality score that did not mean anything (xaml-ml, 24 Nov 2026).**
+**1. The quality score that did not mean anything (flowsmith, 24 Nov 2026).**
 A local LLM generated UiPath workflows and the project's own validator scored them 84–99/100. When I built the same files with the real UiPath
 toolchain (`uip rpa build`), **none of the five loaded**: wrong type syntax, a legacy VB settings block, invented activity properties, undeclared variables,
 C# in a VB project. The score measured best practices, not whether the file works. Fix: deterministic compiler corrections, each one as a regression test,
 and a build check against the real tool (5/5 build afterwards). Lesson: an agent's or a heuristic's score is never the final check; the real consumer of the output is.
-→ [xaml-ml](https://github.com/gh0stsyntax/xaml-ml)
+→ [flowsmith](https://github.com/gh0stsyntax/flowsmith)
 
 **2. "Tests passed (exit code 0)" with zero tests (19–24 Nov 2026).**
 An agent reported green tests. The test file had been started directly with Python instead of pytest – no test ran, the exit code was 0.

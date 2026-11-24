@@ -1,6 +1,6 @@
-# agent-harness
+# airlock
 
-A small, tested gate between AI agents and their tools.
+*A controlled passage between AI agents and the outside world* – a small, tested gate between agents and their tools.
 
 Agents are fast and sometimes wrong. This repository is a reference implementation of the controls I put around them
 in my own multi-agent assistant: **least privilege per agent, risk classes, approval with dry-run as the default,

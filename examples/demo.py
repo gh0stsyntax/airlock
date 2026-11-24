@@ -3,7 +3,7 @@ import sys
 import tempfile
 from pathlib import Path
 
-from agent_harness import AgentPolicy, AuditLog, Harness, Policy, Registry
+from airlock import AgentPolicy, AuditLog, Harness, Policy, Registry
 
 reg = Registry()
 outbox: list = []

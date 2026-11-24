@@ -3,7 +3,7 @@ import time
 
 import pytest
 
-from agent_harness import AgentPolicy, AuditLog, Harness, Policy, Registry
+from airlock import AgentPolicy, AuditLog, Harness, Policy, Registry
 
 
 @pytest.fixture
