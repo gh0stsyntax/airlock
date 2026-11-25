@@ -4,7 +4,7 @@
 
 Agents are fast and sometimes wrong. This repository is a reference implementation of the controls I put around them
 in my own multi-agent assistant: **least privilege per agent, risk classes, approval with dry-run as the default,
-call budgets, timeouts and a tamper-evident audit log.** About 275 lines of Python, no dependencies, 16 tests.
+call budgets, timeouts and a tamper-evident audit log.** About 275 lines of Python, no dependencies, 26 tests.
 
 ```text
 agent ──call("send_mail", args)──► Harness ──► allowlist → risk ceiling → budget → approval → timeout → tool
@@ -26,8 +26,9 @@ agent ──call("send_mail", args)──► Harness ──► allowlist → ris
 
 ```bash
 pip install -e ".[test]"
-python -m pytest -q          # 16 tests
+python -m pytest -q          # 26 tests
 python examples/demo.py      # five typical agent mistakes and what happens to each
+python examples/team.py      # three roles (researcher, builder, reviewer) on one harness
 ```
 
 Demo output (shortened):
@@ -38,6 +39,16 @@ Demo output (shortened):
 5 same call to an address the approver rejects -> denied: approval refused
 audit records: 5, chain intact: True
 ```
+
+## Example: three roles on one harness
+
+`examples/team.py` runs a small pipeline with a *researcher*, a *builder* and a *reviewer*. Each role sees only the tools it
+needs (`visible_tools` differs per role), has its own call budget and timeout, and the only outside effect (`release_fix`)
+needs a dry run first and then an approval. The pipeline **fails closed**: any step that is not `ok` (denied, timeout, error,
+failed tests) halts the run, so a later role never builds on a failed earlier one. Roles hand over data, never tools.
+`tests/test_team.py` covers the happy path, role isolation, refused approval, exhausted budget, a hanging dependency, a
+rejected preview and tampering with the audit log; 7 deliberate breakages of the example (builder allowed to release,
+reviewer with all rights, release without confirmation ...) were all caught.
 
 ## Are the tests any good?
 

@@ -23,3 +23,5 @@ jobs:
       - run: python -m pytest -q
       - name: Demo runs and the audit chain verifies
         run: python examples/demo.py
+      - name: Three-role example runs, releases once and the audit chain verifies
+        run: PYTHONPATH=src python examples/team.py
