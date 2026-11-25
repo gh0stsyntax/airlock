@@ -1,5 +1,7 @@
 # airlock
 
+[![tests](https://github.com/gh0stsyntax/airlock/actions/workflows/tests.yml/badge.svg)](https://github.com/gh0stsyntax/airlock/actions/workflows/tests.yml)
+
 *A controlled passage between AI agents and the outside world* – a small, tested gate between agents and their tools.
 
 Agents are fast and sometimes wrong. This repository is a reference implementation of the controls I put around them
